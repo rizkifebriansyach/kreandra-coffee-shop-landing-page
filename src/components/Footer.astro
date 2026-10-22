@@ -1,0 +1,183 @@
+---
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer id="contact" class="footer">
+  <div class="container footer__inner">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <span class="footer__logo">
+          <span class="footer__name">KREANDRA</span>
+          <span class="footer__tag">{site.tagline}</span>
+        </span>
+        <p class="footer__text">Good coffee, slow mornings, and a corner that feels like yours.</p>
+        <p class="footer__text">
+          <a href={`mailto:${site.email}`}>{site.email}</a><br />
+          <a href={`tel:${site.phone.replace(/\s+/g, '')}`}>{site.phone}</a>
+        </p>
+      </div>
+
+      <nav aria-label="Footer" class="footer__nav">
+        <div class="footer__col">
+          <span class="footer__heading">Explore</span>
+          <a href="#menu">Menu</a>
+          <a href="#about">Our Story</a>
+          <a href="#locations">Locations</a>
+          <a href="#contact">Careers</a>
+        </div>
+        <div class="footer__col">
+          <span class="footer__heading">Help</span>
+          <a href="#contact">Contact Us</a>
+          <a href="#contact">Order Ahead</a>
+          <a href="#contact">Rewards</a>
+          <a href="#contact">FAQ</a>
+        </div>
+      </nav>
+
+      <!-- Ganti `action` dengan endpoint newsletter kamu (Mailchimp, Brevo, Formspree, dll). -->
+      <form class="footer__form" action="#" method="post">
+        <label for="newsletter-email" class="footer__heading">Fresh news &amp; seasonal drops</label>
+        <div class="footer__field">
+          <input id="newsletter-email" type="email" name="email" placeholder="your@email.com" autocomplete="email" required />
+          <button class="btn btn--light" type="submit">Subscribe</button>
+        </div>
+        <span class="footer__hint">One email a month. No spam, just coffee.</span>
+      </form>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© {year} {site.name}. All rights reserved.</span>
+      <span class="footer__legal"><a href="#contact">Privacy</a><a href="#contact">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--green-dark);
+    color: var(--white);
+  }
+  .footer a {
+    color: #d7dfd0;
+    text-decoration: none;
+  }
+  .footer a:hover {
+    color: var(--white);
+  }
+  .footer__inner {
+    padding-top: 64px;
+    padding-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  .footer__top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 64px;
+    justify-content: space-between;
+  }
+  .footer__brand {
+    flex: 1 1 280px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .footer__logo {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer__name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 32px;
+    letter-spacing: 0.12em;
+    line-height: 1;
+  }
+  .footer__tag {
+    font-size: 9px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    color: #b9c7b0;
+  }
+  .footer__text {
+    max-width: 320px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #d7dfd0;
+  }
+  .footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px 56px;
+  }
+  .footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 14px;
+    line-height: 2;
+  }
+  .footer__heading {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+  .footer__form {
+    flex: 1 1 320px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .footer__field {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .footer__field input {
+    min-height: 48px;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1.5px solid #6f8a68;
+    background: var(--green-dark);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 14px;
+    flex: 1 1 200px;
+    min-width: 0;
+  }
+  .footer__field input::placeholder {
+    color: #b9c7b0;
+  }
+  .footer__field input:focus-visible {
+    outline: 2px solid var(--cream);
+    outline-offset: 2px;
+  }
+  .footer__hint {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #b9c7b0;
+  }
+  .footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 12px;
+    color: #b9c7b0;
+  }
+  .footer__legal {
+    display: flex;
+    gap: 20px;
+  }
+</style>

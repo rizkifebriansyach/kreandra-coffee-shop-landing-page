@@ -1,0 +1,136 @@
+---
+import Icon from './Icon.astro';
+import { locations } from '../data/site';
+---
+
+<section id="locations" class="loc" aria-labelledby="locations-title">
+  <div class="container section loc__inner">
+    <div class="loc__intro">
+      <span class="eyebrow">Locations &amp; Hours</span>
+      <h2 id="locations-title" class="h2">Come find<br />your corner.</h2>
+      <p class="lead">Walk in, order ahead, or book the long table for your team.</p>
+      <!--
+        Ganti blok di bawah dengan embed Google Maps:
+        <iframe src="https://www.google.com/maps/embed?pb=..." title="Kreandra Coffee locations" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      -->
+      <div class="placeholder loc__map" role="img" aria-label="Map placeholder: embed a Google Maps view with both café pins here">
+        Google Maps embed – Kemang &amp; Menteng pins
+      </div>
+    </div>
+
+    <div class="loc__grid">
+      {locations.map((loc) => (
+        <article class="card loc__card">
+          <Icon name="pin" size={26} stroke="#3F5A3A" />
+          <h3 class="loc__name">{loc.name}</h3>
+          <p class="loc__address">{loc.street}<br />{loc.city} {loc.postalCode}</p>
+          <dl class="loc__hours">
+            {loc.hours.map((h) => (
+              <>
+                <dt>{h.days}</dt>
+                <dd>{h.time}</dd>
+              </>
+            ))}
+          </dl>
+          <a href={loc.mapsUrl} class="loc__link" target="_blank" rel="noopener">
+            Get Directions <Icon name="arrow" size={14} />
+          </a>
+        </article>
+      ))}
+
+      <article class="card loc__card loc__card--accent">
+        <Icon name="clock" size={26} stroke="#FFFFFF" />
+        <h3 class="loc__name">Order ahead,<br />skip the line.</h3>
+        <p class="loc__address">Pick up in minutes at any Kreandra café, or get it delivered through our partner apps.</p>
+        <div class="loc__cta"><a href="#menu" class="btn btn--light">Order Now</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .loc {
+    background: var(--sage-light);
+  }
+  .loc__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    align-items: flex-start;
+  }
+  .loc__intro {
+    flex: 1 1 320px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .loc__map {
+    height: 240px;
+    border-radius: 20px;
+    margin-top: 8px;
+  }
+  .loc__grid {
+    flex: 2 1 520px;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .loc__card {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .loc__card--accent {
+    background: var(--green);
+    border-color: transparent;
+    color: var(--white);
+  }
+  .loc__card--accent .loc__name {
+    color: var(--white);
+  }
+  .loc__card--accent .loc__address {
+    color: #e6ece0;
+  }
+  .loc__name {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+  .loc__address {
+    font-size: 14px;
+    color: var(--body);
+  }
+  .loc__hours {
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 16px;
+    font-size: 13px;
+    color: var(--body);
+  }
+  .loc__hours dt {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .loc__hours dd {
+    margin: 0;
+  }
+  .loc__link {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    color: var(--green);
+  }
+  .loc__cta {
+    margin-top: auto;
+  }
+</style>

@@ -1,0 +1,59 @@
+---
+import Icon from './Icon.astro';
+import { site, locations } from '../data/site';
+
+const items = [
+  { icon: 'pin', title: `${locations.length} Locations`, text: 'Kemang & Menteng' },
+  { icon: 'sprout', title: 'Eco Friendly', text: 'Sustainable choices' },
+  { icon: 'gift', title: 'Rewards', text: 'Earn with every sip' },
+  { icon: 'instagram', title: 'Follow Us', text: site.instagram },
+] as const;
+---
+
+<section class="highlights container" aria-label="Highlights">
+  <ul class="highlights__list">
+    {items.map((i) => (
+      <li>
+        <Icon name={i.icon} size={24} stroke="#3F5A3A" />
+        <span class="highlights__text">
+          <span class="highlights__title">{i.title}</span>
+          <span class="highlights__sub">{i.text}</span>
+        </span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .highlights {
+    padding-bottom: 64px;
+  }
+  .highlights__list {
+    list-style: none;
+    margin: 0;
+    padding: 28px 0 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  .highlights__list li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .highlights__text {
+    display: flex;
+    flex-direction: column;
+  }
+  .highlights__title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .highlights__sub {
+    font-size: 12px;
+    color: var(--muted);
+  }
+</style>
